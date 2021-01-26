@@ -9,11 +9,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.co.wchallenge.dominio.modelo.Usuario;
+import com.co.wchallenge.sistema.constantes.TecnicaInconsistenciaEnum;
+import com.co.wchallenge.sistema.excepciones.ExcepcionTecnica;
 import com.co.wchallenge.sistema.seguridad.modelo.UsuarioDetalle;
+import com.co.wchallenge.sistema.utilidades.ErrorTecnico;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TokenSeguridadServicio  {
@@ -46,10 +50,16 @@ public class TokenSeguridadServicio  {
                 .getBody();
     }
     
-    public String obtenerTokenPersona(Usuario usuario) {
+    public String obtenerTokenPersona(Optional<Usuario> usuarioDominio) {
+        if (usuarioDominio.isEmpty())
+        	throw new ExcepcionTecnica(ErrorTecnico.de(TecnicaInconsistenciaEnum.USUARIO_INEXISTENTE));
+        return this.obtenerTokenPersona(usuarioDominio.get());
+	}
+    
+    public String obtenerTokenPersona(Usuario usuarioDominio) {
         Claims claims = Jwts.claims();
-        claims.put(USUARIO_ID, usuario.getId());
-        claims.put(usuario.getId().equals(1) ? ADMINISTRADOR_ROL : USUARIO_ROL, true);
+        claims.put(USUARIO_ID, usuarioDominio.getId());
+        claims.put(usuarioDominio.getId().equals(1) ? ADMINISTRADOR_ROL : USUARIO_ROL, true);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))

@@ -40,8 +40,6 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 			"/webjars/**",
 			// Servicios autenticacion
 			"/au/**",
-			// validacion salud
-			"/health"
 		};
 	
 	private TokenSeguridadServicio tokenSeguridadServicio;
