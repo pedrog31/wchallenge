@@ -1,3 +1,8 @@
 spring.data.mongodb.uri: mongodb+srv://wchallenge:wchallenge@cluster0.sdr7w.mongodb.net/wchallenge?retryWrites=true&w=majority
 springdoc.swagger-ui.path: /swagger-ui.html
 entorno.url-data: https://jsonplaceholder.typicode.com
+seguridad:
+  permitir-origenes: '*'
+  token:
+    firma: firmaToken
+    tiempo-vida-segundos: 3600
