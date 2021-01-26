@@ -25,10 +25,18 @@ public class AlbumConsultaRepositorioRest implements AlbumConsultaRepositorio {
 
 	@Override
 	public List<Album> obtenerAlbumes(Optional<Integer> idUsuario) {
-		UriComponents builder = UriComponentsBuilder.fromPath("/albums").queryParamIfPresent("userId", idUsuario)
+		UriComponents uri = UriComponentsBuilder.fromPath("/albums").queryParamIfPresent("userId", idUsuario)
 				.build();
-		return Arrays.asList(plantillaRest.getForObject(builder.toUriString(), AlbumDTO[].class)).stream()
+		return Arrays.asList(plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class)).stream()
 				.map(AlbumConstructor::convertirADominio).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Integer> obtenerAlbumesIdsPorUsuario(Integer idUsuario) {
+		UriComponents uri = UriComponentsBuilder.fromPath("/albums").queryParam("userId", idUsuario)
+				.build();
+		return Arrays.asList(plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class)).stream()
+				.map(AlbumDTO::getId).collect(Collectors.toList());
 	}
 
 }

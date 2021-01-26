@@ -9,4 +9,6 @@ public interface AlbumConsultaRepositorio {
 
 	List<Album> obtenerAlbumes(Optional<Integer> idUsuario);
 
+	List<Integer> obtenerAlbumesIdsPorUsuario(Integer idUsuario);
+
 }
