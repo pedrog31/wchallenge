@@ -27,7 +27,7 @@ public class AutenticacionRest {
 	@PostMapping("autenticacion")
 	public Map<String, Object> autenticarPersona(
 			@Parameter(description = "REQUERIDO 'correoElectronico' 'contrasena'") @RequestBody UsuarioSeguridad usuario) {
-		Optional<Usuario> usuarioDominio = usuarioConsulta.obtenerUsuario(usuario.getCorreo(), usuario.getContrasena());
+		Optional<Usuario> usuarioDominio = usuarioConsulta.obtenerUsuario(usuario.getCorreo(), Integer.parseInt(usuario.getContrasena()));
 		return Collections.singletonMap("token", tokenSeguridadServicio.obtenerTokenPersona(usuarioDominio));
 	}
 	

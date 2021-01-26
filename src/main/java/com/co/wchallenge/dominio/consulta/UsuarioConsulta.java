@@ -17,7 +17,7 @@ public class UsuarioConsulta {
 		return usuarioRepositorio.obtenerUsuarios();
 	}
 
-	public Optional<Usuario> obtenerUsuario(String correo, String identificador) {
+	public Optional<Usuario> obtenerUsuario(String correo, Integer identificador) {
 		return usuarioRepositorio.obtenerUsuario(correo, identificador);
 	}
 

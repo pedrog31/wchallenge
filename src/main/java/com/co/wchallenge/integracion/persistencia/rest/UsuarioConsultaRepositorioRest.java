@@ -31,7 +31,7 @@ public class UsuarioConsultaRepositorioRest implements UsuarioConsultaRepositori
 	}
 
 	@Override
-	public Optional<Usuario> obtenerUsuario(String correo, String identificador) {
+	public Optional<Usuario> obtenerUsuario(String correo, Integer identificador) {
 		UriComponents uri = UriComponentsBuilder
 				.fromPath("/users")
 				.queryParam("id", identificador)
