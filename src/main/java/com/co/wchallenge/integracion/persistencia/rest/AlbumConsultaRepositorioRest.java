@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.co.wchallenge.dominio.modelo.Album;
 import com.co.wchallenge.dominio.repositorio.consulta.AlbumConsultaRepositorio;
 import com.co.wchallenge.integracion.persistencia.rest.constructor.AlbumConstructor;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.AlbumDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.AlbumDTO;
 
 import lombok.AllArgsConstructor;
 

@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.co.wchallenge.dominio.modelo.Comentario;
 import com.co.wchallenge.dominio.repositorio.consulta.ComentarioConsultaRepositorio;
 import com.co.wchallenge.integracion.persistencia.rest.constructor.ComentarioConstructor;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.ComentarioDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.ComentarioDTO;
 
 import lombok.AllArgsConstructor;
 

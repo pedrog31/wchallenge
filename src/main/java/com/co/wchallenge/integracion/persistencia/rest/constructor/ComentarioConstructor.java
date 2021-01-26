@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.rest.constructor;
 
 import com.co.wchallenge.dominio.modelo.Comentario;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.ComentarioDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.ComentarioDTO;
 
 public class ComentarioConstructor {
 

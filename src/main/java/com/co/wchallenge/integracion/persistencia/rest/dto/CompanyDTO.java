@@ -1,4 +1,4 @@
-package com.co.wchallenge.integracion.persistencia.rest.modelo;
+package com.co.wchallenge.integracion.persistencia.rest.dto;
 
 import lombok.Getter;
 
