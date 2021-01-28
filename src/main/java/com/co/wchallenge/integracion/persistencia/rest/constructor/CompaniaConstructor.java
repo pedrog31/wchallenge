@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.rest.constructor;
 
 import com.co.wchallenge.dominio.modelo.Compania;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.CompanyDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.CompanyDTO;
 
 public class CompaniaConstructor {
 

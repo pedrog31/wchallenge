@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.rest.constructor;
 
 import com.co.wchallenge.dominio.modelo.Album;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.AlbumDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.AlbumDTO;
 
 public class AlbumConstructor {
 

@@ -13,7 +13,7 @@ import com.co.wchallenge.dominio.modelo.Foto;
 import com.co.wchallenge.dominio.repositorio.consulta.AlbumConsultaRepositorio;
 import com.co.wchallenge.dominio.repositorio.consulta.FotoConsultaRepositorio;
 import com.co.wchallenge.integracion.persistencia.rest.constructor.FotoConstructor;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.FotoDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.FotoDTO;
 
 import lombok.AllArgsConstructor;
 

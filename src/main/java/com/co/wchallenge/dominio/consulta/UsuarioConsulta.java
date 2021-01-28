@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 public class UsuarioConsulta {
 	
 	private final UsuarioConsultaRepositorio usuarioRepositorio;
+	private final PermisoConsulta permisoConsulta;
 
 	public List<Usuario> obtenerUsuarios() {
 		return usuarioRepositorio.obtenerUsuarios();
@@ -19,6 +20,11 @@ public class UsuarioConsulta {
 
 	public Optional<Usuario> obtenerUsuario(String correo, Integer identificador) {
 		return usuarioRepositorio.obtenerUsuario(correo, identificador);
+	}
+
+	public List<Usuario> obtenerUsuariosPorAlbumPermiso(String claveTipoPermiso, Integer idAlbum) {
+		List<Integer> idUsuarios = permisoConsulta.obtenerUsuariosConPermisos(claveTipoPermiso, idAlbum);
+		return usuarioRepositorio.obtenerUsuarios(idUsuarios);
 	}
 
 }

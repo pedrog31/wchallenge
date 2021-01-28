@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.rest.constructor;
 
 import com.co.wchallenge.dominio.modelo.Foto;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.FotoDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.FotoDTO;
 
 public class FotoConstructor {
 

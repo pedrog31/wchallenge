@@ -11,4 +11,6 @@ public interface AlbumConsultaRepositorio {
 
 	List<Integer> obtenerAlbumesIdsPorUsuario(Integer idUsuario);
 
+	boolean existePorIdAlbumYIdUsuarioCreador(Integer idAlbum, Integer idUsuarioCreador);
+
 }

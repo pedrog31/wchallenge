@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.wchallenge.dominio.consulta.UsuarioConsulta;
@@ -20,6 +21,12 @@ public class UsuarioRest {
 	@GetMapping("/ops/usuario")
 	private ResponseEntity<List<Usuario>> obtenerUsuarios () {
 		List<Usuario> usuarios = usuarioConsulta.obtenerUsuarios();
+		return usuarios.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(usuarios);
+	}
+	
+	@GetMapping("/us/usuario")
+	private ResponseEntity<List<Usuario>> obtenerUsuariosPorAlbumPermiso (@RequestParam String claveTipoPermiso, @RequestParam Integer idAlbum) {
+		List<Usuario> usuarios = usuarioConsulta.obtenerUsuariosPorAlbumPermiso(claveTipoPermiso, idAlbum);
 		return usuarios.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(usuarios);
 	}
 }
