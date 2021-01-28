@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.co.wchallenge.dominio.modelo.Usuario;
 import com.co.wchallenge.dominio.repositorio.consulta.UsuarioConsultaRepositorio;
 import com.co.wchallenge.integracion.persistencia.rest.constructor.UsuarioConstructor;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.UserDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.UserDTO;
 
 import lombok.AllArgsConstructor;
 

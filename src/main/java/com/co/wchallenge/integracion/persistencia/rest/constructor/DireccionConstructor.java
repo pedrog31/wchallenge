@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.rest.constructor;
 
 import com.co.wchallenge.dominio.modelo.Direccion;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.AddressDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.AddressDTO;
 
 public class DireccionConstructor {
 

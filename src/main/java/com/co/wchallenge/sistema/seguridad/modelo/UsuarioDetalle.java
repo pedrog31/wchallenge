@@ -24,11 +24,11 @@ public class UsuarioDetalle implements UserDetails {
 	}
 	private List<SimpleGrantedAuthority> authorities;
 	
-	private Integer idPersona;
+	private Integer idUsuario;
 
-	public UsuarioDetalle(List<SimpleGrantedAuthority> authorities, Integer idPersona) {
+	public UsuarioDetalle(List<SimpleGrantedAuthority> authorities, Integer idUsuario) {
 		this.authorities = authorities;
-		this.idPersona = idPersona;
+		this.idUsuario = idUsuario;
 	}
 
 	public boolean esUsuario() {
@@ -46,8 +46,8 @@ public class UsuarioDetalle implements UserDetails {
 		return authorities;
 	}
 
-	public Integer getIdPersona() {
-		return idPersona;
+	public Integer getIdUsuario() {
+		return idUsuario;
 	}
 
 	@Override

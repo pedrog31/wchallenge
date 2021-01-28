@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.rest.constructor;
 
 import com.co.wchallenge.dominio.modelo.Usuario;
-import com.co.wchallenge.integracion.persistencia.rest.modelo.UserDTO;
+import com.co.wchallenge.integracion.persistencia.rest.dto.UserDTO;
 
 public class UsuarioConstructor {
 

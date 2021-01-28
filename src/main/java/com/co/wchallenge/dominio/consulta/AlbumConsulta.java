@@ -17,4 +17,8 @@ public class AlbumConsulta {
 		return albumConsultaRepositorio.obtenerAlbumes(idUsuario);
 	}
 
+	public boolean esDueno(Integer idAlbum, Integer idUsuarioCreador) {
+		return albumConsultaRepositorio.existePorIdAlbumYIdUsuarioCreador(idAlbum, idUsuarioCreador);
+	}
+
 }
