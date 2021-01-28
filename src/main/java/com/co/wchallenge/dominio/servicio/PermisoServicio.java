@@ -9,7 +9,6 @@ import com.co.wchallenge.dominio.consulta.PermisoConsulta;
 import com.co.wchallenge.dominio.excepcion.ExcepcionNegocio;
 import com.co.wchallenge.dominio.modelo.Inconsistencia;
 import com.co.wchallenge.dominio.modelo.Permiso;
-import com.co.wchallenge.dominio.modelo.PermisoLector;
 import com.co.wchallenge.dominio.repositorio.servicio.PermisoServicioRepositorio;
 
 import lombok.AllArgsConstructor;
@@ -43,7 +42,7 @@ public class PermisoServicio {
 		Permiso permisoUsuarioCreador = permisoUsuarioCreadorOp.get();
 		if (permisoUsuarioCreador.isAgregarEliminarPermisos())
 			return true;
-		if (permisoACrear instanceof PermisoLector && permisoUsuarioCreador.isCompartir())
+		if (!permisoACrear.isCompartir() && permisoUsuarioCreador.isCompartir())
 			return true;
 		return false;
 	}
