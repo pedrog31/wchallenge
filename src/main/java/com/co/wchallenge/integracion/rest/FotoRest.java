@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.co.wchallenge.dominio.consulta.FotoConsulta;
 import com.co.wchallenge.dominio.modelo.Foto;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -20,7 +21,8 @@ public class FotoRest {
 	private final FotoConsulta fotoConsulta;
 	
 	@GetMapping("/ops/foto")
-	private ResponseEntity<List<Foto>> obtenerFotos (@RequestParam(required = false) Optional<Integer> idUsuario) {
+	@Operation(summary = "obtenerFotos: Obtiene las fotos desde el servicio jsonplaceholder y de cada usuario si se envia el parametro idUsuario")
+	public ResponseEntity<List<Foto>> obtenerFotos (@RequestParam(required = false) Optional<Integer> idUsuario) {
 		List<Foto> fotos = fotoConsulta.obtenerFotos(idUsuario);
 		return fotos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(fotos);
 	}

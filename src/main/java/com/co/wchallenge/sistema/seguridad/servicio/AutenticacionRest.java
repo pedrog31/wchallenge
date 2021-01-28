@@ -13,7 +13,7 @@ import com.co.wchallenge.dominio.consulta.UsuarioConsulta;
 import com.co.wchallenge.dominio.modelo.Usuario;
 import com.co.wchallenge.sistema.seguridad.modelo.UsuarioSeguridad;
 
-import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -25,8 +25,8 @@ public class AutenticacionRest {
 	private final UsuarioConsulta usuarioConsulta;
 
 	@PostMapping("autenticacion")
-	public Map<String, Object> autenticarPersona(
-			@Parameter(description = "REQUERIDO 'correoElectronico' 'contrasena'") @RequestBody UsuarioSeguridad usuario) {
+	@Operation(summary = "autenticarPersona: REQUERIDO 'correoElectronico' 'contrasena'")
+	public Map<String, Object> autenticarPersona(@RequestBody UsuarioSeguridad usuario) {
 		Optional<Usuario> usuarioDominio = usuarioConsulta.obtenerUsuario(usuario.getCorreo(), Integer.parseInt(usuario.getContrasena()));
 		return Collections.singletonMap("token", tokenSeguridadServicio.obtenerTokenPersona(usuarioDominio));
 	}

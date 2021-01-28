@@ -49,7 +49,8 @@ public class AlbumConsultaRepositorioRest implements AlbumConsultaRepositorio {
 				.queryParam(ID_USUARIO_PARAM, idUsuarioCreador)
 				.queryParam(ID_ALBUM_PARAM, idAlbum)
 				.build();
-		return plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class).length > 0;
+		AlbumDTO[] albums = plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class);
+		return albums != null && albums.length > 0;
 	}
 
 }
