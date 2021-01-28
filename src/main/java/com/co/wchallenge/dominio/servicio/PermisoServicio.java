@@ -30,26 +30,34 @@ public class PermisoServicio {
 
 	private void validarCreacionPermisos(Permiso permisoACrear, Integer idAlbum, Integer idUsuario,
 			Integer idUsuarioCreador) throws ExcepcionNegocio {
-		Optional<Permiso> permisoUsuarioCreador = permisoConsulta.buscarPermiso(idAlbum, idUsuarioCreador);
-		if (this.puedeCrearPermiso(permisoACrear, permisoUsuarioCreador) || albumConsulta.esDueno(idAlbum, idUsuarioCreador))
+		if (this.puedeCrearPermiso(permisoACrear, idAlbum, idUsuario) || albumConsulta.esDueno(idAlbum, idUsuarioCreador))
 			return;
 		throw ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.CREACION));
 	}
 
-	private boolean puedeCrearPermiso(Permiso permisoACrear, Optional<Permiso> permisoUsuarioCreadorOp) {
+	private boolean puedeCrearPermiso(Permiso permisoACrear, Integer idAlbum, Integer idUsuarioCreador) {
+		Optional<Permiso> permisoUsuarioCreadorOp = permisoConsulta.buscarPermiso(idAlbum, idUsuarioCreador);
 		if (permisoUsuarioCreadorOp.isEmpty())
 			return false;
 		Permiso permisoUsuarioCreador = permisoUsuarioCreadorOp.get();
-		if (permisoUsuarioCreador.isAgregarEliminarPermisos())
-			return true;
-		if (!permisoACrear.isCompartir() && permisoUsuarioCreador.isCompartir())
-			return true;
-		return false;
+		return permisoUsuarioCreador.puedeCrearPermiso(permisoACrear);
 	}
 
 	private Permiso obtenerPermiso(String claveTipoPermiso) throws ExcepcionNegocio {
 		return permisos.stream().filter(per -> per.getClave().equals(claveTipoPermiso)).findFirst()
 				.orElseThrow(() -> ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.CLAVE)));
+	}
+
+	public void eliminarPermiso(Integer idAlbum, Integer idUsuario, Integer idUsuarioEliminador) throws ExcepcionNegocio {
+		this.validarEliminacionPermisos(idAlbum, idUsuario, idUsuarioEliminador);
+		permisoServicioRepositorio.eliminarPermiso(idAlbum, idUsuario);
+	}
+
+	private void validarEliminacionPermisos(Integer idAlbum, Integer idUsuario, Integer idUsuarioEliminador) throws ExcepcionNegocio {
+		Optional<Permiso> permisoUsuarioEliminadorOp = permisoConsulta.buscarPermiso(idAlbum, idUsuarioEliminador);
+		boolean tienePermiso = permisoUsuarioEliminadorOp.isPresent() && permisoUsuarioEliminadorOp.get().isAgregarEliminarPermisos();
+		if (!tienePermiso && !albumConsulta.esDueno(idAlbum, idUsuarioEliminador))
+			throw ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.ELIMINACION));
 	}
 
 }

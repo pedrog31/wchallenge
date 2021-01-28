@@ -34,4 +34,9 @@ public class PermisoGestor implements Permiso {
 		return PermisoEnum.GESTOR.getDescripcion();
 	}
 
+	@Override
+	public boolean puedeCrearPermiso(Permiso permisoACrear) {
+		return true;
+	}
+
 }

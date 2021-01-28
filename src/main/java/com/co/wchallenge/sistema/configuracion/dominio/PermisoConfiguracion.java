@@ -33,8 +33,8 @@ public class PermisoConfiguracion {
 	}
 
 	@Bean
-	PermisoConsulta crearPermisoConsulta(PermisoConsultaRepositorio permisoConsultaRepositorio) {
-		return new PermisoConsulta(permisoConsultaRepositorio);
+	PermisoConsulta crearPermisoConsulta(List<Permiso> permisos, PermisoConsultaRepositorio permisoConsultaRepositorio) {
+		return new PermisoConsulta(permisos, permisoConsultaRepositorio);
 	}
 	
 }

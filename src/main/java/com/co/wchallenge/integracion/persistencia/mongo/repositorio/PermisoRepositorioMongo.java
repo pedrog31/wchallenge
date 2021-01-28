@@ -12,4 +12,6 @@ public interface PermisoRepositorioMongo extends MongoRepository<PermisoDocument
 
 	Optional<PermisoDocumento> findByIdAlbumAndIdUsuario(Integer idAlbum, Integer idUsuario);
 
+	void deleteByIdAlbumAndIdUsuario(Integer idAlbum, Integer idUsuario);
+
 }

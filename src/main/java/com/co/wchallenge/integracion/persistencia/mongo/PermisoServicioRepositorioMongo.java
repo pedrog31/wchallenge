@@ -24,4 +24,9 @@ public class PermisoServicioRepositorioMongo implements PermisoServicioRepositor
 					.build());
 	}
 
+	@Override
+	public void eliminarPermiso(Integer idAlbum, Integer idUsuario) {
+		permisoRepositorioMongo.deleteByIdAlbumAndIdUsuario(idAlbum, idUsuario);
+	}
+
 }

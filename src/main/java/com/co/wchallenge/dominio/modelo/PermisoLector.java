@@ -34,4 +34,9 @@ public class PermisoLector implements Permiso {
 		return PermisoEnum.LECTOR.getDescripcion();
 	}
 
+	@Override
+	public boolean puedeCrearPermiso(Permiso permisoACrear) {
+		return false;
+	}
+
 }

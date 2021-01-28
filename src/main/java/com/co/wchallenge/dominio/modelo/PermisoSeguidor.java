@@ -34,4 +34,9 @@ public class PermisoSeguidor implements Permiso {
 		return PermisoEnum.SEGUIDOR.getDescripcion();
 	}
 
+	@Override
+	public boolean puedeCrearPermiso(Permiso permisoACrear) {
+		return !permisoACrear.isCompartir();
+	}
+
 }

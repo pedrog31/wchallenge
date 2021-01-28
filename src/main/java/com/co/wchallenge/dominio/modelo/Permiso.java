@@ -9,5 +9,6 @@ public interface Permiso {
 	String getClave();
 	String getNombre();
 	String getDescripcion();
+	boolean puedeCrearPermiso(Permiso permisoACrear);
 	
 }
