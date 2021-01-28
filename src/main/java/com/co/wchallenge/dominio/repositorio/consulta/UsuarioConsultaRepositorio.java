@@ -11,4 +11,6 @@ public interface UsuarioConsultaRepositorio {
 
 	Optional<Usuario> obtenerUsuario(String correo, Integer identificador);
 
+	List<Usuario> obtenerUsuarios(List<Integer> idUsuarios);
+
 }

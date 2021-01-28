@@ -21,4 +21,8 @@ public class PermisoConsulta {
 	public List<Permiso> obtenerPermisos() {
 		return permisos;
 	}
+
+	public List<Integer> obtenerUsuariosConPermisos(String claveTipoPermiso, Integer idAlbum) {
+		return permisoConsultaRepositorio.obtenerUsuariosConPermisos(claveTipoPermiso, idAlbum);
+	}
 }
