@@ -1,5 +1,7 @@
 package com.co.wchallenge.dominio.modelo;
 
+import java.io.Serializable;
+
 import com.co.wchallenge.dominio.constantes.PermisoInconsistenciaEnum;
 
 import lombok.AccessLevel;
@@ -8,7 +10,9 @@ import lombok.Getter;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class Inconsistencia {
+public class Inconsistencia implements Serializable {
+	
+	private static final long serialVersionUID = 5271665682119998815L;
 	
 	private String codigo;
 	private String mensaje;

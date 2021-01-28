@@ -14,6 +14,7 @@ import com.co.wchallenge.dominio.modelo.Permiso;
 import com.co.wchallenge.dominio.servicio.PermisoServicio;
 import com.co.wchallenge.sistema.seguridad.modelo.UsuarioDetalle;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -24,19 +25,22 @@ public class PermisoRest {
 	private final PermisoConsulta permisoConsulta;
 	
 	@GetMapping("/us/permiso")
-	private List<Permiso> obtenerPermisos() throws ExcepcionNegocio {
+	@Operation(summary = "obtenerPermisos: Obtiene los permisos configurados en el sistema")
+	public List<Permiso> obtenerPermisos() {
 		return permisoConsulta.obtenerPermisos();
 	}
 	
 	@PostMapping("/us/permiso")
-	private Permiso crearPermiso (@RequestParam String claveTipoPermiso, @RequestParam Integer idAlbum,
+	@Operation(summary = "crearPermiso: Permite crear un permiso a un usuario sobre un album especifico")
+	public Permiso crearPermiso (@RequestParam String claveTipoPermiso, @RequestParam Integer idAlbum,
 			@RequestParam Integer idUsuario) throws ExcepcionNegocio {
 		Integer idUsuarioCreador = UsuarioDetalle.obtenerUsuarioActual().get().getIdUsuario();
 		return permisoServicio.crearPermiso(claveTipoPermiso, idAlbum, idUsuario, idUsuarioCreador);
 	}
 	
 	@DeleteMapping("/us/permiso")
-	private void eliminarPermiso (@RequestParam Integer idAlbum,	@RequestParam Integer idUsuario) throws ExcepcionNegocio {
+	@Operation(summary = "eliminarPermiso: Permite eliminar un permiso a un usuario sobre un album especifico")
+	public void eliminarPermiso (@RequestParam Integer idAlbum,	@RequestParam Integer idUsuario) throws ExcepcionNegocio {
 		Integer idUsuarioEliminador = UsuarioDetalle.obtenerUsuarioActual().get().getIdUsuario();
 		permisoServicio.eliminarPermiso(idAlbum, idUsuario, idUsuarioEliminador);
 	}

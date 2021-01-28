@@ -49,11 +49,11 @@ public class PermisoServicio {
 	}
 
 	public void eliminarPermiso(Integer idAlbum, Integer idUsuario, Integer idUsuarioEliminador) throws ExcepcionNegocio {
-		this.validarEliminacionPermisos(idAlbum, idUsuario, idUsuarioEliminador);
+		this.validarEliminacionPermisos(idAlbum, idUsuarioEliminador);
 		permisoServicioRepositorio.eliminarPermiso(idAlbum, idUsuario);
 	}
 
-	private void validarEliminacionPermisos(Integer idAlbum, Integer idUsuario, Integer idUsuarioEliminador) throws ExcepcionNegocio {
+	private void validarEliminacionPermisos(Integer idAlbum, Integer idUsuarioEliminador) throws ExcepcionNegocio {
 		Optional<Permiso> permisoUsuarioEliminadorOp = permisoConsulta.buscarPermiso(idAlbum, idUsuarioEliminador);
 		boolean tienePermiso = permisoUsuarioEliminadorOp.isPresent() && permisoUsuarioEliminadorOp.get().isAgregarEliminarPermisos();
 		if (!tienePermiso && !albumConsulta.esDueno(idAlbum, idUsuarioEliminador))

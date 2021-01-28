@@ -13,8 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter.ReferrerPolicy;
 
 import com.co.wchallenge.sistema.seguridad.manejador.AutenticacionDenegadaManejador;
@@ -60,7 +58,7 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.cors().and().csrf().disable()//.csrfTokenRepository(this.getCsrfTokenRepository()).and()
+		httpSecurity.cors().and().csrf().disable()
 				.headers()
 				.httpStrictTransportSecurity (
 						hsts -> hsts.includeSubDomains(true).preload(true).maxAgeInSeconds(31536000))
@@ -75,14 +73,6 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().authenticationEntryPoint(new AutenticacionInvalidaManejador()).accessDeniedHandler(new AutenticacionDenegadaManejador())
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(new FiltroTokenServicio(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
-	}
-	
-	@SuppressWarnings("unused")
-	private CsrfTokenRepository getCsrfTokenRepository() {
-        CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-        tokenRepository.setCookiePath("/");
-        tokenRepository.setCookieDomain("udea.edu.co");
-        return tokenRepository;
 	}
 	
 	@Bean
