@@ -1,7 +1,7 @@
 package com.co.wchallenge.integracion.persistencia.mongo;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,12 +16,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PermisoConsultaRepositorioMongo implements PermisoConsultaRepositorio {
 	
-	private final Stream<Permiso> permisos;
+	private final List<Permiso> permisos;
 	private final PermisoRepositorioMongo permisoRepositorioMongo;
 
 	@Override
 	public Optional<Permiso> obtenerPermiso(Integer idAlbum, Integer idUsuario) {
 		Optional<PermisoDocumento> permisoDocOptional =  permisoRepositorioMongo.findByIdAlbumAndIdUsuario(idAlbum, idUsuario);
-		return permisoDocOptional.isPresent() ? permisos.filter(per -> per.getClave().equals(permisoDocOptional.get().getTipo())).findFirst() : Optional.empty();
+		return permisoDocOptional.isPresent() ? permisos.stream().filter(per -> per.getClave().equals(permisoDocOptional.get().getTipo())).findFirst() : Optional.empty();
 	}
 }

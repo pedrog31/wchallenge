@@ -1,7 +1,7 @@
 package com.co.wchallenge.sistema.configuracion.dominio;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,15 +20,15 @@ import com.co.wchallenge.dominio.servicio.PermisoServicio;
 public class PermisoConfiguracion {
 
 	@Bean
-	Stream<Permiso> crearPermisos() {
+	List<Permiso> crearPermisos() {
 		return Arrays.asList(
 				new PermisoGestor(),
 				new PermisoSeguidor(),
-				new PermisoLector()).stream();
+				new PermisoLector());
 	}
 
 	@Bean
-	PermisoServicio crearPermisoServicio(PermisoServicioRepositorio permisoServicioRepositorio, PermisoConsulta permisoConsulta, AlbumConsulta albumConsulta, Stream<Permiso> permisos) {
+	PermisoServicio crearPermisoServicio(PermisoServicioRepositorio permisoServicioRepositorio, PermisoConsulta permisoConsulta, AlbumConsulta albumConsulta, List<Permiso> permisos) {
 		return new PermisoServicio(permisoServicioRepositorio, permisoConsulta, albumConsulta, permisos);
 	}
 

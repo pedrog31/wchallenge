@@ -23,7 +23,7 @@ public class AlbumConsultaRepositorioRest implements AlbumConsultaRepositorio {
 
 	private static final String URL_BASE = "/albums";
 	private static final String ID_USUARIO_PARAM = "userId";
-	private static final String ID_ALBUM_PARAM = "albumId";
+	private static final String ID_ALBUM_PARAM = "id";
 	
 	private final RestTemplate plantillaRest;
 
@@ -49,7 +49,8 @@ public class AlbumConsultaRepositorioRest implements AlbumConsultaRepositorio {
 				.queryParam(ID_USUARIO_PARAM, idUsuarioCreador)
 				.queryParam(ID_ALBUM_PARAM, idAlbum)
 				.build();
-		return plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class).length > 0;
+		boolean c = plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class).length > 0;
+		return c;
 	}
 
 }
