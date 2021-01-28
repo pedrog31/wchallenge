@@ -21,11 +21,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AlbumConsultaRepositorioRest implements AlbumConsultaRepositorio {
 
+	private static final String URL_BASE = "/albums";
+	private static final String ID_USUARIO_PARAM = "userId";
+	private static final String ID_ALBUM_PARAM = "albumId";
+	
 	private final RestTemplate plantillaRest;
 
 	@Override
 	public List<Album> obtenerAlbumes(Optional<Integer> idUsuario) {
-		UriComponents uri = UriComponentsBuilder.fromPath("/albums").queryParamIfPresent("userId", idUsuario)
+		UriComponents uri = UriComponentsBuilder.fromPath(URL_BASE).queryParamIfPresent(ID_USUARIO_PARAM, idUsuario)
 				.build();
 		return Arrays.asList(plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class)).stream()
 				.map(AlbumConstructor::convertirADominio).collect(Collectors.toList());
@@ -33,10 +37,19 @@ public class AlbumConsultaRepositorioRest implements AlbumConsultaRepositorio {
 
 	@Override
 	public List<Integer> obtenerAlbumesIdsPorUsuario(Integer idUsuario) {
-		UriComponents uri = UriComponentsBuilder.fromPath("/albums").queryParam("userId", idUsuario)
+		UriComponents uri = UriComponentsBuilder.fromPath(URL_BASE).queryParam(ID_USUARIO_PARAM, idUsuario)
 				.build();
 		return Arrays.asList(plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class)).stream()
 				.map(AlbumDTO::getId).collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean existePorIdAlbumYIdUsuarioCreador(Integer idAlbum, Integer idUsuarioCreador) {
+		UriComponents uri = UriComponentsBuilder.fromPath(URL_BASE)
+				.queryParam(ID_USUARIO_PARAM, idUsuarioCreador)
+				.queryParam(ID_ALBUM_PARAM, idAlbum)
+				.build();
+		return plantillaRest.getForObject(uri.toUriString(), AlbumDTO[].class).length > 0;
 	}
 
 }

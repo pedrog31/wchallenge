@@ -1,5 +1,7 @@
 package com.co.wchallenge.dominio.modelo;
 
+import com.co.wchallenge.dominio.constantes.PermisoInconsistenciaEnum;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +13,9 @@ public class Inconsistencia {
 	private String codigo;
 	private String mensaje;
 	private String tipo;
-/*
-	public static Inconsistencia de(SeccionInconsistenciaEnum seccionInconsistenciaEnum) {
-		return new Inconsistencia(seccionInconsistenciaEnum.getCodigo(), seccionInconsistenciaEnum.getMensaje(),
-				seccionInconsistenciaEnum.getTipo());
-	}*/
+
+	public static Inconsistencia de(PermisoInconsistenciaEnum permisoInconsistenciaEnum) {
+		return new Inconsistencia(permisoInconsistenciaEnum.getCodigo(), permisoInconsistenciaEnum.getMensaje(),
+				permisoInconsistenciaEnum.getTipo());
+	}
 }

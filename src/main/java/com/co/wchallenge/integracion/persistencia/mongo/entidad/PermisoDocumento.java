@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PermisoEntidad {
+public class PermisoDocumento {
 
 	@Id
 	private ObjectId _id;
