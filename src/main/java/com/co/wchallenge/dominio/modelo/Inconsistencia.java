@@ -6,10 +6,12 @@ import com.co.wchallenge.dominio.constantes.PermisoInconsistenciaEnum;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@EqualsAndHashCode
 public class Inconsistencia implements Serializable {
 	
 	private static final long serialVersionUID = 5271665682119998815L;

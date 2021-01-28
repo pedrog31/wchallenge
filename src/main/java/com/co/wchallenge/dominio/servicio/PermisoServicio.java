@@ -28,11 +28,14 @@ public class PermisoServicio {
 		return permiso;
 	}
 
-	private void validarCreacionPermisos(Permiso permisoACrear, Integer idAlbum, Integer idUsuario,
-			Integer idUsuarioCreador) throws ExcepcionNegocio {
-		if (this.puedeCrearPermiso(permisoACrear, idAlbum, idUsuario) || albumConsulta.esDueno(idAlbum, idUsuarioCreador))
-			return;
-		throw ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.CREACION));
+	public void eliminarPermiso(Integer idAlbum, Integer idUsuario, Integer idUsuarioEliminador) throws ExcepcionNegocio {
+		this.validarEliminacionPermisos(idAlbum, idUsuarioEliminador);
+		permisoServicioRepositorio.eliminarPermiso(idAlbum, idUsuario);
+	}
+
+	private Permiso obtenerPermiso(String claveTipoPermiso) throws ExcepcionNegocio {
+		return permisos.stream().filter(per -> per.getClave().equals(claveTipoPermiso)).findFirst()
+				.orElseThrow(() -> ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.CLAVE)));
 	}
 
 	private boolean puedeCrearPermiso(Permiso permisoACrear, Integer idAlbum, Integer idUsuarioCreador) {
@@ -43,14 +46,11 @@ public class PermisoServicio {
 		return permisoUsuarioCreador.puedeCrearPermiso(permisoACrear);
 	}
 
-	private Permiso obtenerPermiso(String claveTipoPermiso) throws ExcepcionNegocio {
-		return permisos.stream().filter(per -> per.getClave().equals(claveTipoPermiso)).findFirst()
-				.orElseThrow(() -> ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.CLAVE)));
-	}
-
-	public void eliminarPermiso(Integer idAlbum, Integer idUsuario, Integer idUsuarioEliminador) throws ExcepcionNegocio {
-		this.validarEliminacionPermisos(idAlbum, idUsuarioEliminador);
-		permisoServicioRepositorio.eliminarPermiso(idAlbum, idUsuario);
+	private void validarCreacionPermisos(Permiso permisoACrear, Integer idAlbum, Integer idUsuario,
+			Integer idUsuarioCreador) throws ExcepcionNegocio {
+		if (this.puedeCrearPermiso(permisoACrear, idAlbum, idUsuario) || albumConsulta.esDueno(idAlbum, idUsuarioCreador))
+			return;
+		throw ExcepcionNegocio.de(Inconsistencia.de(PermisoInconsistenciaEnum.CREACION));
 	}
 
 	private void validarEliminacionPermisos(Integer idAlbum, Integer idUsuarioEliminador) throws ExcepcionNegocio {
